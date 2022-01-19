@@ -13,9 +13,6 @@ import com.booking.entity.SeatBooking;
 public interface SeatBookingRepository extends JpaRepository<SeatBooking, Integer>{
 
 	List<SeatBooking> findBySeatId(Integer id);
-	@Query(value="SELECT s FROM SeatBooking s WHERE s.day=:day AND ( "
-			+ "(s.startTime <=:startTime AND endTime>:startTime) "
-			+ "OR (startTime <=:endTime AND endTime>=:endTime)) ")	
-	SeatBooking checkBooking(@Param("day") LocalDate day,@Param("startTime") LocalTime startTime,@Param("endTime") LocalTime endTime);
+	List<SeatBooking> findByDayAndSeatId(LocalDate day, Integer seatId);
 
 }

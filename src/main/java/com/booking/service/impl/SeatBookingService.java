@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.booking.converter.SeatBookingConverter;
 import com.booking.dto.SeatBookingDto;
+import com.booking.dto.SeatBookingDto;
+import com.booking.entity.SeatBooking;
 import com.booking.entity.Seat;
 import com.booking.entity.SeatBooking;
 import com.booking.repository.SeatBookingRepository;
@@ -39,9 +41,14 @@ public class SeatBookingService implements ISeatBookingService {
 	@Override
 	public SeatBookingDto save(SeatBookingDto dto) {
 		try {
-			SeatBooking sb = seatBookingRepository.checkBooking(dto.getDay(), dto.getStartTime(), dto.getEndTime());
-			if (sb != null) {
-				throw new Exception("dupicated time");
+			List<SeatBooking> rbs = seatBookingRepository.findByDayAndSeatId(dto.getDay(), dto.getSeatId());
+			for(SeatBooking rb: rbs) {
+				SeatBookingDto rbDto = seatBookingConverter.toDto(rb);
+				boolean check1 = dto.getStartTime().isAfter(rbDto.getEndTime());
+				boolean check2 = dto.getEndTime().isBefore(rbDto.getStartTime());			
+				if(check1 == false && check2 == false) {	
+					throw new Exception("dupicated time");
+				}
 			}
 		} catch (Exception e) {
 			return null;
@@ -54,7 +61,7 @@ public class SeatBookingService implements ISeatBookingService {
 	}
 
 	@Override
-	public List<SeatBookingDto> findByRoomId(Integer id) {
+	public List<SeatBookingDto> findBySeatId(Integer id) {
 		List<SeatBooking> entities = seatBookingRepository.findBySeatId(id);
 		List<SeatBookingDto> dtos = new ArrayList<>();
 		for (SeatBooking entity : entities) {

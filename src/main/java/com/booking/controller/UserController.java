@@ -60,7 +60,7 @@ public class UserController {
 			mav.addObject("models", roomBookingDtos);
 		} else {
 			SeatDto seat = seatService.findOne(id);
-			List<SeatBookingDto> saetBookingDtos = seatBookingService.findByRoomId(id);
+			List<SeatBookingDto> saetBookingDtos = seatBookingService.findBySeatId(id);
 			mav.addObject("model", seat);
 			mav.addObject("models", saetBookingDtos);
 		}

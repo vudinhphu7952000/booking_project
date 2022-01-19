@@ -7,5 +7,5 @@ import com.booking.dto.SeatBookingDto;
 public interface ISeatBookingService {
 	List<SeatBookingDto> getAll();
 	SeatBookingDto save(SeatBookingDto dto);
-	List<SeatBookingDto> findByRoomId(Integer id);
+	List<SeatBookingDto> findBySeatId(Integer id);
 }
