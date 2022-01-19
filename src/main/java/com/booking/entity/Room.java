@@ -1,9 +1,9 @@
 package com.booking.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(name="room")
 public class Room extends SeatAndRoom{
 
-	@OneToMany(mappedBy="room", fetch=FetchType.LAZY)
-	private List<RoomBooking> bookingRooms;
+	@OneToMany(mappedBy="room")
+	private List<RoomBooking> bookingRooms = new ArrayList<>();
 
 	public List<RoomBooking> getBookingRooms() {
 		return bookingRooms;

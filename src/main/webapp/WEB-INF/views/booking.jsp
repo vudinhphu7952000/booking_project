@@ -103,7 +103,7 @@
 							<div class="col-4 form-group">
 								<label>Date</label>
 								<div class="input-group date" id="datepicker">
-									<input name="day" class="form-control" placeholder="MM/DD/YYYY" /><span
+									<input name="day" class="form-control" placeholder="MM/DD/YYYY" required/><span
 										class="input-group-append input-group-addon"><span
 										class="input-group-text"><i class="fa fa-calendar"></i></span></span>
 								</div>
@@ -111,17 +111,17 @@
 							<div class="col-4 form-group">
 								<label>Start time:</label>
 								<div class="input-group time" id="timepicker">
-									<input id="startTime" class="form-control" name="startTime"
+									<input id="startTime" class="form-control" name="startTime" required
 										placeholder="HH:MM" /><span
 										class="input-group-append input-group-addon"><span
 										class="input-group-text"><i class="fa fa-clock"></i></span></span>
 								</div>
 							</div>
-
+							
 							<div class="col-4 form-group">
 								<label>End time</label>
 								<div class="input-group time" id="timepicker2">
-									<input id="endTime" class="form-control" name="endTime"
+									<input id="endTime" class="form-control" name="endTime" required
 										placeholder="HH:MM" /><span
 										class="input-group-append input-group-addon"><span
 										class="input-group-text"><i class="fa fa-clock"></i></span></span>
@@ -149,6 +149,7 @@
 							<th scope="col">Date</th>
 							<th scope="col">Start Time</th>
 							<th scope="col">End Time</th>
+							<th scope="col">Price</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -157,6 +158,7 @@
 								<td>${item.day}</td>
 								<td>${item.startTime}</td>
 								<td>${item.endTime}</td>
+								<td>${item.price}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -230,7 +232,7 @@
 					success : function(result) {
 						swal({
 						    title: "Successfully !",
-						    type: "success",
+						    type: "Price: " + result.price,
 						    showCancelButton: true,
 						    confirmButtonColor: '#008000',
 						    confirmButtonText: 'Ok !',

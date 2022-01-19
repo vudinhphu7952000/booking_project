@@ -44,15 +44,11 @@
           	</li>
           </security:authorize>
           
-         <%--  <security:authorize access="isAuthenticated()">
+          <security:authorize access="isAuthenticated()">
           	<li class="nav-item">
-            	<a class="nav-link" onClick="logoutForm.submit()">Logout</a>
-            	<c:url var="logoutUrl" value="/logout" />
-		        <form action="${logoutUrl}" method="post" id="logoutForm" hidden=true>
-		            <input type="hidden"/>
-		        </form>
+          		<a class="nav-link" href="<c:url value='/logout' />">Log out</a>       
           	</li>
-          </security:authorize> --%>
+          </security:authorize>
           
         </ul>
       </div>

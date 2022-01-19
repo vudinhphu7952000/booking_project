@@ -12,17 +12,17 @@
 		<form class="col-6" id="formSubmit">
 		<div class="form-group">
 			<label for="name">Room Name</label> <input
-				type="text" class="form-control" id="name" name="name" 
+				type="text" class="form-control" id="name" name="name" required
 				value='${model.name}'>
 		</div>
 		<div class="form-group">
 			<label for="code">Room Code</label> <input
-				type="text" class="form-control" id="code" name="code" 
+				type="text" class="form-control" id="code" name="code" required
 				value='${model.code}'>
 		</div>
 		<div class="form-group">
 			<label for="pricePerHour">Price (1h)</label> <input
-				type="text" class="form-control" id="pricePerHour" name="pricePerHour" 
+				type="text" class="form-control" id="pricePerHour" name="pricePerHour"  required
 				value='${model.pricePerHour}'>
 		</div>
 		<div class="form-group">

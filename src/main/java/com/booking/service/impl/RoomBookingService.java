@@ -39,10 +39,14 @@ public class RoomBookingService implements IRoomBookingService {
 	@Override
 	public RoomBookingDto save(RoomBookingDto dto) {
 		try {
-			RoomBooking rb = roomBookingRepository.checkBooking(dto.getDay(), dto.getStartTime(),
-					dto.getEndTime());
-			if (rb != null) {
-				throw new Exception("dupicated time");
+			List<RoomBooking> rbs = roomBookingRepository.findByDayAndRoomId(dto.getDay(), dto.getRoomId());
+			for(RoomBooking rb: rbs) {
+				RoomBookingDto rbDto = roomBookingConverter.toDto(rb);
+				boolean check1 = dto.getStartTime().isAfter(rbDto.getEndTime());
+				boolean check2 = dto.getEndTime().isBefore(rbDto.getStartTime());			
+				if(check1 == false && check2 == false) {	
+					throw new Exception("dupicated time");
+				}
 			}
 		} catch (Exception e) {
 			return null;

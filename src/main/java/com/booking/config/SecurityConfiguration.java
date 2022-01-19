@@ -25,11 +25,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private DataSource dataSource;
 	
+	//Mã háo password
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
+	//Cấu hình security các rquest theo url, login, logout
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		 http
@@ -40,9 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
          .and()
          .httpBasic()
          .and().formLogin().loginPage("/login").permitAll()
-         .defaultSuccessUrl("/trang-chu");
-		 
-	
+         .defaultSuccessUrl("/trang-chu")
+         .and()  
+         .logout()  
+         .logoutUrl("/j_spring_security_logout")  
+         .logoutSuccessUrl("/")  
+         ;
+
 	// Cấu hình Remember Me.
 	http.authorizeRequests().and() //
 			.rememberMe().tokenRepository(this.persistentTokenRepository()) //
@@ -50,6 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	}
 	
+	//Hỗ trợ remember me
 	@Bean
 	public PersistentTokenRepository persistentTokenRepository() {
 		JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
@@ -57,9 +64,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return db;
 	}
 	
+	//Cung cấp thông tin user lấy từ database (UserDetail) for spring security
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService);
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
 }
