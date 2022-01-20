@@ -62,15 +62,11 @@
 						</li>
 					</security:authorize>
 
-					<%--  <security:authorize access="isAuthenticated()">
-          	<li class="nav-item">
-            	<a class="nav-link" onClick="logoutForm.submit()">Logout</a>
-            	<c:url var="logoutUrl" value="/logout" />
-		        <form action="${logoutUrl}" method="post" id="logoutForm" hidden=true>
-		            <input type="hidden"/>
-		        </form>
-          	</li>
-          </security:authorize> --%>
+					<security:authorize access="isAuthenticated()">
+			          	<li class="nav-item">
+			          		<a class="nav-link" href="<c:url value='/logout' />">Log out</a>       
+			          	</li>
+		          	</security:authorize>
 
 				</ul>
 			</div>
@@ -232,7 +228,8 @@
 					success : function(result) {
 						swal({
 						    title: "Successfully !",
-						    type: "Price: " + result.price,
+						    text:"Total Price: " + result['price'],
+						    type: "success",
 						    showCancelButton: true,
 						    confirmButtonColor: '#008000',
 						    confirmButtonText: 'Ok !',
