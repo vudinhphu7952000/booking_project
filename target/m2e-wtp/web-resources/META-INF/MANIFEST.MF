@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: booking-web-app
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: PC
+Built-By: DELL
 Implementation-Vendor-Id: com.booking
-Build-Jdk: 1.8.0_191
+Build-Jdk: 1.8.0_312
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/booking-web-app
 Created-By: Maven Integration for Eclipse
