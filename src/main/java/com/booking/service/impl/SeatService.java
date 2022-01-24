@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.booking.converter.SeatConverter;
 import com.booking.dto.SeatDto;
 import com.booking.entity.Seat;
+import com.booking.entity.SeatBooking;
+import com.booking.repository.SeatBookingRepository;
 import com.booking.repository.SeatRepository;
 import com.booking.service.ISeatService;
 
@@ -20,6 +22,9 @@ public class SeatService implements ISeatService{
 	
 	@Autowired
 	SeatConverter seatConverter;
+	
+	@Autowired
+	SeatBookingRepository seatBookingRepository;
 	
 	@Override
 	public List<SeatDto> getAll() {
@@ -48,9 +53,16 @@ public class SeatService implements ISeatService{
 	}
 
 	@Override
-	public void delete(Integer[] ids) {
+	public String delete(Integer[] ids) {
+		String result = "";
 		for(Integer id:ids) {
+			List<SeatBooking> sbt = seatBookingRepository.findBySeatId(id);
+			if(sbt.size() > 0) {	
+				result += id + " ";
+				continue;
+			}
 			seatRepository.deleteById(id);
 		}
+		return result;
 	}
 }

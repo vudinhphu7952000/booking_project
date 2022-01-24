@@ -64,10 +64,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return db;
 	}
 	
-	//Cung cấp thông tin user lấy từ database (UserDetail) for spring security
-	@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
-    }
+//	//Cung cấp thông tin user lấy từ database (UserDetail) for spring security
+//	@Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+//    }
 
 }

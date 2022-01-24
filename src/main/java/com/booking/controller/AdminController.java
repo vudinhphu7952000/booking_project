@@ -37,6 +37,7 @@ public class AdminController {
 		return mav;
 	}
 
+	// hiển thị trang danh sách các room
 	@GetMapping(value = "/admin/list-room")
 	public ModelAndView listRoom() {
 		ModelAndView mav = new ModelAndView("listRoom");
@@ -45,6 +46,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	// hiển thị trang để nhập và lưu thông tin room
 	@GetMapping(value = "/admin/save-room")
 	public ModelAndView saveRoom(@RequestParam(value="id", required=false) Integer id) {
 		ModelAndView mav = new ModelAndView("saveRoom");
@@ -54,7 +56,8 @@ public class AdminController {
 		}
 		return mav;
 	}
-
+	
+	// hiển thị trang danh sách các seat
 	@GetMapping(value = "/admin/list-seat")
 	public ModelAndView listSeat() {
 		ModelAndView mav = new ModelAndView("listSeat");
@@ -63,6 +66,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	// hiển thị trang để nhập và lưu thông tin seat
 	@GetMapping(value = "/admin/save-seat")
 	public ModelAndView saveSeat(@RequestParam(value="id", required=false) Integer id) {
 		ModelAndView mav = new ModelAndView("saveSeat");
@@ -73,6 +77,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	// hiển thị trang các room đã đặt
 	@GetMapping(value = "/admin/room-booking")
 	public ModelAndView roomBooking() {
 		ModelAndView mav = new ModelAndView("listBooking");
@@ -81,6 +86,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	// hiển thị trang các seat đã đặt
 	@GetMapping(value = "/admin/seat-booking")
 	public ModelAndView seatBooking() {
 		ModelAndView mav = new ModelAndView("listBooking");

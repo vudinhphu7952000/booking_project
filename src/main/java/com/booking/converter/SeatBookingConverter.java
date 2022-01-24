@@ -12,6 +12,7 @@ public class SeatBookingConverter {
 	@Autowired 
 	SeatConverter seatConverter;
 	
+	// convert Dto -> Entity 
 	public SeatBooking toEntity(SeatBookingDto dto) {
 		SeatBooking result = new SeatBooking();
 		if(dto.getId() != null) {
@@ -23,6 +24,8 @@ public class SeatBookingConverter {
 		result.setPrice(dto.getPrice());
 		return result;
 	}
+	
+	// convert Entity -> Dto 
 	public SeatBookingDto toDto(SeatBooking entity) {
 		SeatBookingDto result = new SeatBookingDto();
 		result.setId(entity.getId());

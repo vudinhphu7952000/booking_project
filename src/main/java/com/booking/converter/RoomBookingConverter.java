@@ -11,6 +11,8 @@ public class RoomBookingConverter {
 	
 	@Autowired 
 	RoomConverter roomConverter;
+	
+	// convert Dto -> Entity 
 	public RoomBooking toEntity(RoomBookingDto dto) {
 		RoomBooking result = new RoomBooking();
 		if(dto.getId() != null) {
@@ -22,6 +24,8 @@ public class RoomBookingConverter {
 		result.setPrice(dto.getPrice());
 		return result;
 	}
+	
+	// convert Entity -> Dto 
 	public RoomBookingDto toDto(RoomBooking entity) {
 		RoomBookingDto result = new RoomBookingDto();
 		result.setId(entity.getId());

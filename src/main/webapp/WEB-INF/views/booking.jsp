@@ -33,10 +33,12 @@
 <!-- Custom styles for this template -->
 <link rel="stylesheet"
 	href="<c:url value='/template/css/small-business.css' />" />
-	
-	
- <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
-	<script src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
+
+
+<link rel='stylesheet'
+	href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
+<script
+	src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
 
 </head>
 
@@ -63,10 +65,9 @@
 					</security:authorize>
 
 					<security:authorize access="isAuthenticated()">
-			          	<li class="nav-item">
-			          		<a class="nav-link" href="<c:url value='/logout' />">Log out</a>       
-			          	</li>
-		          	</security:authorize>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/logout' />">Log out</a></li>
+					</security:authorize>
 
 				</ul>
 			</div>
@@ -94,40 +95,41 @@
 
 				<h3>Booking:</h3>
 				<div class="container-fluid">
-				<form id="formSubmit" class="mb-5">
-					<div class="row">
+					<form id="formSubmit" class="mb-5">
+						<div class="row">
 							<div class="col-4 form-group">
 								<label>Date</label>
 								<div class="input-group date" id="datepicker">
-									<input name="day" class="form-control" placeholder="MM/DD/YYYY" required/><span
-										class="input-group-append input-group-addon"><span
+									<input name="day" class="form-control" placeholder="MM/DD/YYYY"
+										required /><span class="input-group-append input-group-addon"><span
 										class="input-group-text"><i class="fa fa-calendar"></i></span></span>
 								</div>
 							</div>
 							<div class="col-4 form-group">
 								<label>Start time:</label>
 								<div class="input-group time" id="timepicker">
-									<input id="startTime" class="form-control" name="startTime" required
-										placeholder="HH:MM" /><span
+									<input id="startTime" class="form-control" name="startTime"
+										required placeholder="HH:MM" /><span
 										class="input-group-append input-group-addon"><span
 										class="input-group-text"><i class="fa fa-clock"></i></span></span>
 								</div>
 							</div>
-							
+
 							<div class="col-4 form-group">
 								<label>End time</label>
 								<div class="input-group time" id="timepicker2">
-									<input id="endTime" class="form-control" name="endTime" required
-										placeholder="HH:MM" /><span
+									<input id="endTime" class="form-control" name="endTime"
+										required placeholder="HH:MM" /><span
 										class="input-group-append input-group-addon"><span
 										class="input-group-text"><i class="fa fa-clock"></i></span></span>
 								</div>
 							</div>
-						
-						
-					</div>
-					<input type="hidden" id="${type}Id" name="${type}Id" value='${id}'>
-					<button type="submit" id="booking" class="btn btn-primary pl-3 pr-3">Booking</button>
+
+
+						</div>
+						<input type="hidden" id="${type}Id" name="${type}Id" value='${id}'>
+						<button type="submit" id="booking"
+							class="btn btn-primary pl-3 pr-3">Booking</button>
 					</form>
 					<input type="hidden" id="typeApi" name="typeApi" value='${type}'>
 				</div>
@@ -205,62 +207,59 @@
 
 
 	<script type="text/javascript">
-	var api= "/" + $('#typeApi').val() + "/" + $('#typeApi').val() + "booking";
-	$('#formSubmit').submit(function(e) {
-		e.preventDefault();
-		var data = {};
-		var formData = $('#formSubmit').serializeArray();
-		$.each(formData, function(i, v) {
-			data["" + v.name + ""] = v.value;
-		});	
-		
-		insert(data);
-		
-	});
-	function insert(data) {
-		$
-				.ajax({
-					url : api,
-					type : 'POST',
-					contentType : 'application/json',
-					data : JSON.stringify(data),
-					dataType : 'json',
-					success : function(result) {
-						swal({
-						    title: "Successfully !",
-						    text:"Total Price: " + result['price'],
-						    type: "success",
-						    showCancelButton: true,
-						    confirmButtonColor: '#008000',
-						    confirmButtonText: 'Ok !',
-						    closeOnConfirm: false,
-						    closeOnCancel: true
-						 },
-						 function(isConfirm){
-						   if (isConfirm){
-							   window.location.href = "/";	
-						    }
-						 });
-					},
-					error : function(error) {
-						swal({
-						    title: "Duplicated data !",
-						    type: "error",
-						    showCancelButton: true,
-						    confirmButtonColor: '#008000',
-						    confirmButtonText: 'Ok',
-						    closeOnConfirm: true,
-						 },
-						 function(isConfirm){
-						   if (isConfirm){						
-						    }
-						 });
-						console.log(error);
-					}
-				});
-	};
-	
-	
+		var api = "/" + $('#typeApi').val() + "/" + $('#typeApi').val()
+				+ "booking";
+		$('#formSubmit').submit(function(e) {
+			e.preventDefault();
+			var data = {};
+			var formData = $('#formSubmit').serializeArray();
+			$.each(formData, function(i, v) {
+				data["" + v.name + ""] = v.value;
+			});
+
+			insert(data);
+
+		});
+		function insert(data) {
+			$.ajax({
+				url : api,
+				type : 'POST',
+				contentType : 'application/json',
+				data : JSON.stringify(data),
+				dataType : 'json',
+				success : function(result) {
+					swal({
+						title : "Successfully !",
+						text : "Total Price: " + result['price'],
+						type : "success",
+						showCancelButton : true,
+						confirmButtonColor : '#008000',
+						confirmButtonText : 'Ok !',
+						closeOnConfirm : false,
+						closeOnCancel : true
+					}, function(isConfirm) {
+						if (isConfirm) {
+							window.location.href = "/";
+						}
+					});
+				},
+				error : function(error) {
+					swal({
+						title : "Duplicated data !",
+						type : "error",
+						showCancelButton : true,
+						confirmButtonColor : '#008000',
+						confirmButtonText : 'Ok',
+						closeOnConfirm : true,
+					}, function(isConfirm) {
+						if (isConfirm) {
+						}
+					});
+					console.log(error);
+				}
+			});
+		};
+
 		if (/Mobi/.test(navigator.userAgent)) {
 			// if mobile device, use native pickers
 			$(".date input").attr("type", "date");

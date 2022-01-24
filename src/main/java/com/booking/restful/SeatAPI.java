@@ -29,8 +29,8 @@ public class SeatAPI {
 	}
 
 	@DeleteMapping("/delete")
-	public void update(@RequestBody Integer[] ids) {
-		seatService.delete(ids);
+	public String update(@RequestBody Integer[] ids) {
+		return seatService.delete(ids);
 	}
 	
 }

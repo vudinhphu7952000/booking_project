@@ -7,6 +7,7 @@ import com.booking.entity.Seat;
 
 @Component
 public class SeatConverter {
+	// convert Dto -> Entity
 	public Seat toEntity(SeatDto dto) {
 		Seat result = new Seat();
 		result.setId(dto.getId());
@@ -16,6 +17,8 @@ public class SeatConverter {
 		result.setPricePerHour(dto.getPricePerHour());
 		return result;
 	}
+	
+	// convert Entity -> Dto 
 	public SeatDto toDto(Seat entity) {
 		SeatDto result = new SeatDto();
 		result.setId(entity.getId());

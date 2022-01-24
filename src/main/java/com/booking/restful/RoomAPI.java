@@ -29,7 +29,7 @@ public class RoomAPI {
 	}
 
 	@DeleteMapping("/delete")
-	public void update(@RequestBody Integer[] ids) {
-		roomService.delete(ids);
+	public String update(@RequestBody Integer[] ids) {
+		return roomService.delete(ids);
 	}
 }

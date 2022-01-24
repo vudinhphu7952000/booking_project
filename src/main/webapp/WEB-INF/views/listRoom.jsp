@@ -16,9 +16,8 @@
 			<div>
 				<a flag="info"
 					class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
-					data-toggle="tooltip" title='Add'
-					href='/admin/save-room'> <span> <i
-						class="fa fa-plus-circle bigger-110 purple"></i>
+					data-toggle="tooltip" title='Add' href='/admin/save-room'> <span>
+						<i class="fa fa-plus-circle bigger-110 purple"></i>
 				</span>
 				</a>
 
@@ -121,7 +120,29 @@
 	            contentType: 'application/json',
 	            data: JSON.stringify(data), 
 	            success: function (result){
-	            	window.location.href = "/admin/list-room";
+	            	if(result !== ""){
+	            		swal({
+		    			    title: "Can not delete rooms: ",
+		    			    text: result,
+		    			    type: "warning",
+		    			    //showCancelButton: true,
+		    			    confirmButtonColor: '#008000',
+		    			    confirmButtonText: 'Ok !',
+		    			    cancelButtonText: "Cancel !",
+		    			    closeOnConfirm: false,
+		    			    //closeOnCancel: true
+		    			 },
+		    			 function(isConfirm){
+		    			   if (isConfirm){
+		    				 window.location.href = "/admin/list-room";
+		    			    }
+		    			 });
+	            	}
+	            	else {
+	            		 window.location.href = "/admin/list-room";
+					}
+	    	
+	            	
 	            },
 	            errror: function (error){
 	            	$("#btnDelete").notify("BOOM!", "error");
